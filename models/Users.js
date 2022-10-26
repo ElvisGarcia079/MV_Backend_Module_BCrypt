@@ -27,5 +27,5 @@ const Users = demoDB.define("users", {
 });
 
 module.exports = {
-    Customer
+    Users
 }
