@@ -1,9 +1,6 @@
 const { Sequelize } = require("sequelize");
 const { database } = require("../db");
 
-const {database} = require("../db");
-const {Sequelize} = require("sequelize");
-
 
 const Users = demoDB.define("customers", {
     //id
