@@ -10,6 +10,11 @@ app.get("/", (req, res) => {
     res.send("Successful GET Request Made to the Bcrypt server");
 })
 
+app.get("/users", async (req, res) => {
+    
+    res.send();
+})
+
 app.listen(port, () => {
     console.log(`App listening on http://localhost:${port}`);
 });
