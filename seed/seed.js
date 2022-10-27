@@ -1,6 +1,7 @@
 const {users} = require("./userData");
 const {passwords} = require("./passwordData");
 const { database } = require("../db")
+const bcrypt = require("bcrypt");
 ;const { User, Password } = require("../models/index");
 
 let seed = async () => {

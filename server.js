@@ -18,7 +18,7 @@ app.get("/users", async (req, res) => {
 });
 
 app.get("/passwords", async (req, res) => {
-    let PWs = await Password.findAll();
+    let PWs = await Password.findAll({include: User});
     res.send(PWs);
 })
 
