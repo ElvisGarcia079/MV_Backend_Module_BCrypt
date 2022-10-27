@@ -14,6 +14,8 @@ const Password = database.define("password", {
         type: Sequelize.STRING,
         allowNull: false
     }
+}, {
+    timestamps: false
 });
 
 module.exports = {

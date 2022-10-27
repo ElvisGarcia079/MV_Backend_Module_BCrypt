@@ -17,6 +17,11 @@ app.get("/users", async (req, res) => {
     res.send(users);
 });
 
+app.get("/passwords", async (req, res) => {
+    let PWs = await Password.findAll();
+    res.send(PWs);
+})
+
 app.listen(port, () => {
     console.log(`App listening on http://localhost:${port}`);
 });

@@ -24,6 +24,8 @@ const User = database.define("user", {
         type: Sequelize.STRING, // INT
         allowNull: false // NOT NULL
     }
+}, {
+    timestamps: false
 });
 
 module.exports = {
