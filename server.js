@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const { seed } = require("./seed/seed");
+const bcrypt = require("bcrypt");
 
 const {User, Password} = require("./models/index");
 
 const port = 3020;
+let salt = bcrypt.genSaltSync(4);
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -26,7 +28,8 @@ app.get("/passwords", async (req, res) => {
 app.get("users/:id/login", async (req, res) => {
     let password = "abc123";
     let user = await User.findByPk(req.params.id);
-    
+    // bcrypt.compareSync(password, hash); // true
+    // bcrypt.compareSync(someOtherPlaintextPassword, hash); // false
 })
 
 app.listen(port, () => {
