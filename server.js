@@ -13,8 +13,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-
-    res.send();
+    let users = await User.findAll();
+    res.send(users);
 });
 
 app.listen(port, () => {
