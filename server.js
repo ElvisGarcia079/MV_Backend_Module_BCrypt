@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-    let users = await User.findAll();
+    let users = await User.findAll({include: Password});
     res.send(users);
 });
 
