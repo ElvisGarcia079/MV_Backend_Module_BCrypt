@@ -29,12 +29,12 @@ let seed = async () => {
     let PW3 = await passwordEntries[2];
     console.log("ADDED PW 3")
 
-    // let hashPW1 = bcrypt.hashSync(PW1.password, salt);
-    // PW1.password = hashPW1;
-    // let hashPW2 = bcrypt.hashSync(PW2.password, salt);
-    // PW2.password = hashPW2;
-    // let hashPW3 = bcrypt.hashSync(PW3.password, salt);
-    // PW3.password = hashPW3;
+    let hashPW1 = bcrypt.hashSync(PW1.password, salt);
+    PW1.password = hashPW1;
+    let hashPW2 = bcrypt.hashSync(PW2.password, salt);
+    PW2.password = hashPW2;
+    let hashPW3 = bcrypt.hashSync(PW3.password, salt);
+    PW3.password = hashPW3;
     
     console.log("First Password Obj: ", PW1);
 
