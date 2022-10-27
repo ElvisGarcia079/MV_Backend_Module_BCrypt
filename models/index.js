@@ -1,10 +1,10 @@
-const { Users } = require("./Customers");
-const { Passwords } = require("./Products");
+const { User } = require("./User");
+const { Password } = require("./Password");
 
-Users.hasOne(Passwords);
-Passwords.belongsTo(Users);
+User.hasOne(Password);
+Password.belongsTo(User);
 
 module.exports = {
-    Users,
-    Passwords
+    User,
+    Password
 }

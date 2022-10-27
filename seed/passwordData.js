@@ -9,3 +9,7 @@ let passwords = [
         password: "a1b2c3"
     }
 ]
+
+module.exports = {
+    passwords
+}

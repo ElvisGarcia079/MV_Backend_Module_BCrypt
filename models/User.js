@@ -2,7 +2,7 @@ const { Sequelize } = require("sequelize");
 const { database } = require("../db");
 
 
-const Users = demoDB.define("users", {
+const User = database.define("user", {
     //id
     id: {
         type: Sequelize.INTEGER, // INT
@@ -27,5 +27,5 @@ const Users = demoDB.define("users", {
 });
 
 module.exports = {
-    Users
+    User
 }
