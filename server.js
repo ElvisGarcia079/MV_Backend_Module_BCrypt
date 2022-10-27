@@ -1,12 +1,15 @@
 const express = require("express");
 const app = express();
-const { seed } = require("./seed/seed");
+const { seed, salt, data } = require("./seed/seed");
 const bcrypt = require("bcrypt");
 
 const {User, Password} = require("./models/index");
 
 const port = 3020;
-let salt = bcrypt.genSaltSync(4);
+
+let password1 = "abc123";
+let password2 = "123abc";
+let password3 = "a1b2c3";
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -25,11 +28,30 @@ app.get("/passwords", async (req, res) => {
     res.send(PWs);
 })
 
-app.get("users/:id/login", async (req, res) => {
-    let password = "abc123";
-    let user = await User.findByPk(req.params.id);
-    // bcrypt.compareSync(password, hash); // true
-    // bcrypt.compareSync(someOtherPlaintextPassword, hash); // false
+app.get("/users/:id/login", async (req, res) => {
+   
+    let user = await User.findAll(
+        {
+            where: {
+                id: req.params.id
+            }, 
+            include: {
+                model: Password
+            }
+        });
+    let userPW = await user[0].password.password
+    console.log("The password in DB: ", userPW);
+    console.log("The DB PW Length ", userPW.length);
+    let hash = await bcrypt.hash(password1, salt);
+
+    console.log("User Password Hash: ", hash);
+    // console.log("hash);
+
+    // The key here is, the salt. The salt used in this passwords hash is the same salt used in the DB passwords hash. So I sprinkled the same salt on both passwords and if they are the same then they will be equal. 
+    let pwMatch = bcrypt.compareSync(password1, hash); // true
+   
+
+    pwMatch ? res.send("Success! You've entered the correct password") : res.send("Please enter the correct password to log in to your account!")
 })
 
 app.listen(port, () => {

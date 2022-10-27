@@ -4,7 +4,8 @@ const { database } = require("../db")
 const bcrypt = require("bcrypt");
 ;const { User, Password } = require("../models/index");
 
-let salt = bcrypt.genSaltSync(4);
+const SALT_COUNT = 4;
+let salt = bcrypt.genSaltSync(SALT_COUNT);
 
 let seed = async () => {
     await database.sync({force:true});
@@ -49,8 +50,9 @@ let seed = async () => {
 
 }
 
-seed();
+// seed();
 
 module.exports = {
-    seed
+    seed,
+    salt,
 }
