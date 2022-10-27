@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const { seed } = require("./seed/seed");
 
 const {User, Password} = require("./models/index");
 
@@ -22,6 +23,13 @@ app.get("/passwords", async (req, res) => {
     res.send(PWs);
 })
 
+app.get("users/:id/login", async (req, res) => {
+    let password = "abc123";
+    let user = await User.findByPk(req.params.id);
+    
+})
+
 app.listen(port, () => {
+    seed();
     console.log(`App listening on http://localhost:${port}`);
 });
