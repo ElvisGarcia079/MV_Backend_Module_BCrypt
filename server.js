@@ -6,6 +6,10 @@ const port = 3020;
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+app.get("/", (req, res) => {
+    res.send("Successful GET Request Made to the Bcrypt server");
+})
+
 app.listen(port, () => {
     console.log(`App listening on http://localhost:${port}`);
 });
