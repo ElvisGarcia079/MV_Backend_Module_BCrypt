@@ -4,6 +4,8 @@ const { database } = require("../db")
 const bcrypt = require("bcrypt");
 ;const { User, Password } = require("../models/index");
 
+let salt = bcrypt.genSaltSync(4);
+
 let seed = async () => {
     await database.sync({force:true});
 
@@ -27,11 +29,20 @@ let seed = async () => {
     let PW3 = await passwordEntries[2];
     console.log("ADDED PW 3")
 
+    // let hashPW1 = bcrypt.hashSync(PW1.password, salt);
+    // PW1.password = hashPW1;
+    // let hashPW2 = bcrypt.hashSync(PW2.password, salt);
+    // PW2.password = hashPW2;
+    // let hashPW3 = bcrypt.hashSync(PW3.password, salt);
+    // PW3.password = hashPW3;
+    
+    console.log("First Password Obj: ", PW1);
+
     await user1.setPassword(PW1);
     console.log("User 1 has Password 1");
-    await user2.setPassword(PW3);
+    await user2.setPassword(PW2);
     console.log("User 2 has Password 3");
-    await user3.setPassword(PW2);
+    await user3.setPassword(PW3);
     console.log("User 3 has Password 2\n\n");
 
     console.log("Database successfully populated");
